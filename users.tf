@@ -10,8 +10,9 @@ locals {
 resource "googleworkspace_user" "users" {
   for_each = { for user in local.users : user.first_name => user }
 
-  primary_email = each.value.email
-  password      = each.value.password
+  primary_email       = each.value.email
+  password_wo         = each.value.password
+  password_wo_version = 1
   hash_function = each.value.password_hash_function
 
   name {
